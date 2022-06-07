@@ -4,6 +4,7 @@ import com.andriiyan.springlearning.springboot.api.dao.EventDao;
 import com.andriiyan.springlearning.springboot.api.dao.TicketDao;
 import com.andriiyan.springlearning.springboot.api.dao.UserAccountDao;
 import com.andriiyan.springlearning.springboot.api.dao.UserDao;
+import com.andriiyan.springlearning.springboot.api.model.User;
 import com.andriiyan.springlearning.springboot.impl.model.EventEntity;
 import com.andriiyan.springlearning.springboot.impl.model.TicketEntity;
 import com.andriiyan.springlearning.springboot.impl.model.UserAccountEntity;
@@ -292,7 +293,7 @@ class DumpUtils {
     private Collection<UserEntity> generateAndWriteUsers() throws IOException {
         Collection<UserEntity> events = new ArrayList<>();
         for (int i = 0; i < itemCount; i++) {
-            events.add(new UserEntity(i, "Test #" + i, "email #" + i));
+            events.add(new UserEntity(i, "Test #" + i, "email #" + i, "pass #" + i, User.SCOPE_USER));
         }
         FileUtils.writeIntoFile(serializer, userFilePath, events);
         return events;

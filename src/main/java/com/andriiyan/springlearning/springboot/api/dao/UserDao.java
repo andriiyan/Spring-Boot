@@ -11,6 +11,8 @@ public interface UserDao extends PagingAndSortingRepository<UserEntity, Long> {
 
     Optional<UserEntity> findByEmail(String email);
 
+    Optional<UserEntity> findByName(String name);
+
     List<UserEntity> findAllByName(String name, Pageable pageable);
 
 }
