@@ -1,11 +1,9 @@
 package com.andriiyan.springlearning.springboot.impl;
 
-import com.andriiyan.springlearning.springboot.api.model.User;
-import com.andriiyan.springlearning.springboot.security.JwtUtil;
 import com.andriiyan.springlearning.springboot.impl.model.transport.TokenResponseDTO;
 import com.andriiyan.springlearning.springboot.impl.model.transport.UserCredentialsDTO;
+import com.andriiyan.springlearning.springboot.security.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,7 +25,6 @@ public class TestController {
 
     @PostMapping("/login")
     public TokenResponseDTO handleSignIn(@RequestBody UserCredentialsDTO userCredentialsDTO) {
-        // should be hashed password
         UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(userCredentialsDTO.getUsername(), userCredentialsDTO.getPassword());
         authenticationManager.authenticate(authToken);
         String token = jwtUtil.generateToken(userCredentialsDTO.getUsername());
@@ -41,10 +38,8 @@ public class TestController {
     }
 
     @GetMapping("/scope_admin")
-    @PreAuthorize("hasAuthority('ADMIN')")
     public String handleScopeAdmin() {
         return getUserDetailsFromAuthentication().getUsername() + " has admin rights!";
     }
-
 
 }
