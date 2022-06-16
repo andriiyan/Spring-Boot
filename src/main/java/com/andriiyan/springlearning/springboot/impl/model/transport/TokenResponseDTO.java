@@ -1,13 +1,14 @@
 package com.andriiyan.springlearning.springboot.impl.model.transport;
 
-public class TokenResponseDTO {
-    private String token;
+import org.springframework.lang.NonNull;
 
-    public TokenResponseDTO(String token) {
+public record TokenResponseDTO(@NonNull String token) {
+    public TokenResponseDTO(@NonNull String token) {
         this.token = token;
     }
 
-    public String getToken() {
+    @Override
+    public String token() {
         return token;
     }
 }

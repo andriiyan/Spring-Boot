@@ -1,19 +1,20 @@
 package com.andriiyan.springlearning.springboot.impl.model.transport;
 
-public class UserCredentialsDTO {
-    private String username;
-    private String password;
+import org.springframework.lang.NonNull;
 
+public record UserCredentialsDTO(@NonNull String username, @NonNull String password) {
     public UserCredentialsDTO(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    public String getUsername() {
+    @Override
+    public String username() {
         return username;
     }
 
-    public String getPassword() {
+    @Override
+    public String password() {
         return password;
     }
 }

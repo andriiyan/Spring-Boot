@@ -15,6 +15,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
@@ -29,7 +31,9 @@ import java.util.*;
  * Utility class for dumping objects into the file.
  */
 @Component
-@PropertySource("classpath:application-dump.properties")
+@ConfigurationProperties(prefix = "yaml")
+@PropertySource(value = "classpath:application-dump.yml")
+@Profile("dump")
 class DumpUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(DumpUtils.class);
