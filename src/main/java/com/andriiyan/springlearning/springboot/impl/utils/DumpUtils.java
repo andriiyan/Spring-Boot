@@ -4,6 +4,7 @@ import com.andriiyan.springlearning.springboot.api.dao.EventDao;
 import com.andriiyan.springlearning.springboot.api.dao.TicketDao;
 import com.andriiyan.springlearning.springboot.api.dao.UserAccountDao;
 import com.andriiyan.springlearning.springboot.api.dao.UserDao;
+import com.andriiyan.springlearning.springboot.api.model.User;
 import com.andriiyan.springlearning.springboot.impl.model.EventEntity;
 import com.andriiyan.springlearning.springboot.impl.model.TicketEntity;
 import com.andriiyan.springlearning.springboot.impl.model.UserAccountEntity;
@@ -14,6 +15,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
@@ -28,7 +31,9 @@ import java.util.*;
  * Utility class for dumping objects into the file.
  */
 @Component
-@PropertySource("classpath:application-dump.properties")
+@ConfigurationProperties(prefix = "yaml")
+@PropertySource(value = "classpath:application-dump.yml")
+@Profile("dump")
 class DumpUtils {
 
     private static final Logger logger = LoggerFactory.getLogger(DumpUtils.class);
@@ -292,7 +297,7 @@ class DumpUtils {
     private Collection<UserEntity> generateAndWriteUsers() throws IOException {
         Collection<UserEntity> events = new ArrayList<>();
         for (int i = 0; i < itemCount; i++) {
-            events.add(new UserEntity(i, "Test #" + i, "email #" + i));
+            events.add(new UserEntity(i, "Test #" + i, "email #" + i, "pass #" + i, User.SCOPE_USER));
         }
         FileUtils.writeIntoFile(serializer, userFilePath, events);
         return events;

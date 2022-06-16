@@ -1,0 +1,9 @@
+# Initial date population
+initial-date-population:
+  enabled: false
+  read: true
+  item_count: 10
+  user_file_path: dump_files/users.json
+  user_account_file_path: dump_files/users_account.json
+  ticket_file_path: dump_files/tickets.json
+  event_file_path: dump_files/events.json
