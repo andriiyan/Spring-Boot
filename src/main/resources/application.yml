@@ -18,6 +18,14 @@ spring:
   jpa:
     generate-dll: true
     show-sql: true
+  flyway:
+    locations: /db/postgresql
+    url: jdbc:postgresql://localhost/spring_data_access_database?serverTimezone=UTC
+    user: spring_data_access
+    password: SuperPassword1!
+
+server:
+  port: 9091
 
 logging:
   level:
@@ -32,10 +40,3 @@ logging:
 jwt:
   issuer: andriiyan
   secret: andriisecret
-#OAuth2
-#spring.security.oauth2.client.registration.github.clientId=8d2f919030988b0c7799
-#spring.security.oauth2.client.registration.github.clientSecret=5282627183298de8a306ca935fe4b78f351cb733
-#spring.security.oauth2.client.registration.github.clientId=b512d6d9b0c3afc1f6b4
-#spring.security.oauth2.client.registration.github.clientSecret=1b140b933f5ea2fc5dc395041fe21df6fa2dcfd1
-#spring.security.oauth2.client.registration.github.clientId=f1560abc130dc44a30ef
-#spring.security.oauth2.client.registration.github.clientSecret=1d2c76b5281afbaa3fafd3ee0da6c034dce1df82

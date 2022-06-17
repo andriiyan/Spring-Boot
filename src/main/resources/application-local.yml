@@ -5,5 +5,13 @@ spring:
     password: SuperPassword1!
     driver-class-name: org.h2.Driver
   jpa:
-    generate-ddl: true
+    generate-ddl: false
     show-sql: true
+  flyway:
+    locations: /db/h2
+    url: jdbc:h2:mem:myDb;DB_CLOSE_DELAY=-1
+    user: spring_data_access
+    password: SuperPassword1!
+
+server:
+  port: 9091
