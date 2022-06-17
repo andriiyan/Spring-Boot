@@ -20,8 +20,12 @@ spring:
     show-sql: true
   flyway:
     locations: /db/postgresql
+    url: jdbc:postgresql://localhost/spring_data_access_database?serverTimezone=UTC
+    user: spring_data_access
+    password: SuperPassword1!
 
-
+server:
+  port: 9091
 
 logging:
   level:

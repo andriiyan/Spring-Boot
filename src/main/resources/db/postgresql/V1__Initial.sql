@@ -1,30 +1,25 @@
-CREATE TABLE public.event
- (
- id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 ),
- title character varying(255) NOT NULL,
- date date NOT NULL,
- "time" time without time zone NOT NULL,
- ticket_price real NOT NULL,
- PRIMARY KEY (id)
- );
+CREATE TABLE event(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 ),
+    title character varying(255) NOT NULL,
+    date date NOT NULL,
+    "time" time without time zone NOT NULL,
+    ticket_price real NOT NULL,
+    PRIMARY KEY (id)
+);
 
- ALTER TABLE IF EXISTS public.event
- OWNER to spring_data_access;
+ALTER TABLE IF EXISTS event OWNER to spring_data_access;
 
-     CREATE TABLE public."user"
-     (
-         id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 ),
-         name character varying(255) NOT NULL,
-         email character varying(255) NOT NULL,
-         password character varying(255) NOT NULL,
-         PRIMARY KEY (id)
-     );
+CREATE TABLE users(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 ),
+    name character varying(255) NOT NULL,
+    email character varying(255) NOT NULL,
+    password character varying(255) NOT NULL,
+    PRIMARY KEY (id)
+);
 
-     ALTER TABLE IF EXISTS public."user"
-         OWNER to spring_data_access;
+ALTER TABLE IF EXISTS users OWNER to spring_data_access;
 
-CREATE TABLE public.ticket
-(
+CREATE TABLE ticket(
     id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 ),
     user_id integer NOT NULL,
     event_id integer NOT NULL,
@@ -43,21 +38,18 @@ CREATE TABLE public.ticket
         NOT VALID
 );
 
-ALTER TABLE IF EXISTS public.ticket
-    OWNER to spring_data_access;
+ALTER TABLE IF EXISTS ticket OWNER to spring_data_access;
 
-    CREATE TABLE public.user_account
-    (
-        id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 ),
-        user_id integer NOT NULL,
-        amount real NOT NULL DEFAULT 0,
-        PRIMARY KEY (id),
-        CONSTRAINT user_account_user_foreign_key FOREIGN KEY (user_id)
-            REFERENCES public.users (id) MATCH SIMPLE
-            ON UPDATE NO ACTION
-            ON DELETE NO ACTION
-            NOT VALID
-    );
+CREATE TABLE user_account(
+    id integer NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 ),
+    user_id integer NOT NULL,
+    amount real NOT NULL DEFAULT 0,
+    PRIMARY KEY (id),
+    CONSTRAINT user_account_user_foreign_key FOREIGN KEY (user_id)
+        REFERENCES public.users (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+);
 
-    ALTER TABLE IF EXISTS public.user_account
-        OWNER to spring_data_access;
+ALTER TABLE IF EXISTS public.user_account OWNER to spring_data_access;
