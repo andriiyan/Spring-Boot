@@ -53,7 +53,7 @@ public class SecurityConfiguration {
                         .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                         .antMatchers("/", "/**.html", "/**.js", "/**.ico").permitAll()
                         .antMatchers("/api/v1/login", "/login/oauth2/code/**", "/api/v1/logout", "/api/v1/login/provider/**").permitAll()
-                        .antMatchers("/api/v1/scope_admin").hasAuthority("ADMIN")
+                        .antMatchers("/api/v1/admin/test").hasAuthority("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .csrf().disable()

@@ -5,11 +5,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 
+import java.security.Principal;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public record UserDetailsImpl(@NonNull UserEntity userEntity) implements UserDetails, OAuth2User {
+public record UserDetailsImpl(@NonNull UserEntity userEntity) implements UserDetails, OAuth2User, Principal {
 
     public UserDetailsImpl(@NonNull UserEntity userEntity) {
         this.userEntity = userEntity;
